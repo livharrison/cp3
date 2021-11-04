@@ -3,8 +3,7 @@
   <p class="intro">Choose a trivia question to answer!</p>
   <p class="questions">
     <router-link v-for="question in questions" :key="question.id" :to="'/question/' + question.id">
-      <p class="question">{{question.value}}</p>
-      <!--img src="/images/question_card.png"-->
+      {{question.value}}
     </router-link>
   </p>
 </div>
@@ -27,40 +26,19 @@ export default {
 }
 
 .questions {
- /* display: flex; */
-  /* flex-wrap: wrap; */
   display: grid;
   grid-template: auto auto auto auto auto auto auto auto auto auto auto / 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
 }
 
-/*
-.questions img {
-  border: 1px solid #333;
-  height: 70px;
-  width: 110px;
-  margin-left: 10px;
-  object-fit: cover;
-}*/
-
-a {
+.questions a {
   text-decoration: none;
-  margin: auto;
-  height: 80px;
-}
-
-.question {
-  background-color: rgb(5,5,149);
-  font-family: 'Bebas Neue', sans-serif;
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
   color: gold;
-  height: 70px;
-  width: 110px;
-}
-
-.question p {
-
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: rgb(5,5,149);
+  padding: 10px 0 10px 0;
 }
 </style>
