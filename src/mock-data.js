@@ -224,7 +224,7 @@ let mock = [
      "category":"EPITAPHS & TRIBUTES",
      "air_date":"2004-12-31",
      "question":"1939 Oscar winner: \"...you are a credit to your craft, your race and to your family\"",
-     "value":"$2,000",
+     "value":"$800",
      "answer":"Hattie McDaniel (for her role in Gone with the Wind)",
      "round":"Jeopardy!",
      "show_number":"4680"
@@ -294,7 +294,7 @@ let mock = [
      "category":"DR. SEUSS AT THE MULTIPLEX",
      "air_date":"2004-12-31",
      "question":"Beyond ovoid abandonment, beyond ovoid betrayal... you won't believe the ending when he \"Hatches the Egg\"",
-     "value":"$400",
+     "value":"$1000",
      "answer":"Horton",
      "round":"Double Jeopardy!",
      "show_number":"4680"
