@@ -59,7 +59,8 @@ export default {
       this.answered = true;
     },
     addToStudyBank(question) {
-      this.$root.$data.studyBank.push(question);
+      debugger;
+      this.$root.$data.studyBank.push(this.question);
       console.log(question);
     },
     updateMoney() {

@@ -12,17 +12,12 @@
 </template>
 
 <script>
-//import Question from "../components/Question.vue"
 export default {
     name: 'Home',
-    components: {
-        //Question
-    },
-    props: {
-        studyBank: Array,
-    },
     computed: {
-
+        studyBank() {
+            return this.$root.$data.studyBank;
+        }
     },
     methods: {
         removeQuestion(question) {
