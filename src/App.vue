@@ -5,7 +5,7 @@
     <div id="header-items">
       <router-link to="/"> <p>HOME</p> </router-link>
       <p><b>${{this.$root.$data.money}}</b></p>
-      <router-link to="/"> <p>STUDY BANK</p> </router-link>
+      <router-link to="/study"> <p>STUDY BANK</p> </router-link>
     </div>
     <hr>
   </div>

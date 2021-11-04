@@ -1,21 +1,28 @@
 <template>
 <div>
-    <div class="card">
-        <h1>Study Bank</h1>
-        <div class="list" v-for="question in studyBank" :key="question.id">
+    <div class="question">
+        <h2>Study Bank</h2>
+        <div class="list" v-for="(question, index) in studyBank" :key="question.id">
             <p> {{question.question}} </p>
+            <button class="auto" v-on:click="removeQuestion(index)">Remove Question</button>
         </div>
-        
     </div>
 
 </div>
 </template>
 
 <script>
+//import Question from "../components/Question.vue"
 export default {
     name: 'Home',
+    components: {
+        //Question
+    },
     props: {
         studyBank: Array,
+    },
+    computed: {
+
     },
     methods: {
         removeQuestion(question) {
@@ -26,5 +33,8 @@ export default {
 </script>
 
 <style scoped>
-
+body {
+  margin: 50px 100px;
+  font-family: 'Bellota Text', cursive;
+}
 </style>
