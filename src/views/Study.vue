@@ -21,6 +21,7 @@ export default {
     name: 'Home',
     data() {
         return {
+            // this var is not used
             show: false,
         }
     },

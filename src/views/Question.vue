@@ -30,6 +30,8 @@
         <button type="submit" v-on:click="addToStudyBank(question)">Add to Study Bank</button>
       </div>
 
+      <router-link to="/"><button type="submit">Back to Home</button></router-link>
+
     </div>
 
   </div>
@@ -83,6 +85,12 @@ export default {
 
 .info {
   text-align: center;
+}
+
+button {
+  font-family: 'Korinna', serif;
+  font-size: 16px;
+  margin: 15px 0 0 0;
 }
 
 .results {
