@@ -66,4 +66,39 @@ h1 {
   background-color: #eee;
   text-align: center;
 }
+
+/* Mobile Styles */
+@media only screen and (max-width: 480px) {
+  body {
+    margin: 15px 40px;
+  }
+  #header-items {
+    font-size: 14px;
+    width: 75%;
+  }
+  .footer p{
+    font-size: 14px;
+  }
+  .content {
+    margin: 30px 0 0 0;
+    min-height: 500px;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 481px) and (max-width: 960px) {
+  h1 {
+    font-size: 80px;
+  }
+  #header-items {
+    font-size: 20px;
+    width: 75%;
+  }
+  .content {
+    margin: 40px 0 0 0;
+    min-height: 500px;
+  }
+}
+
+
 </style>

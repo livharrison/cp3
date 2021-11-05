@@ -43,4 +43,34 @@ export default {
   background-color: rgb(5,5,149);
   padding: 10px 0 10px 0;
 }
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 480px) {
+  .questions {
+  display: grid;
+  grid-template: auto auto auto / 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  }
+
+  .intro {
+    margin: 0 0 18px 0;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 481px ) and (max-width: 960px) {
+  .questions {
+  display: grid;
+  grid-template: auto auto auto auto auto auto auto / 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  }
+  .intro {
+    font-size: 22px;
+  }
+}
+
+
 </style>

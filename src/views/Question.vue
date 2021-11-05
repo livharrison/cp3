@@ -133,4 +133,31 @@ h4 {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 480px) {
+  h3 {
+    font-size: 20px;
+  }
+  .card {
+    padding: 15px;
+    width: 90%;
+  }
+  .q-text {
+    font-size: 20px;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 481px) and (max-width: 960px) {
+  .card {
+    width: 90%;
+  }
+  .q-text {
+    font-size: 35px;
+  }
+}
+
+
 </style>
