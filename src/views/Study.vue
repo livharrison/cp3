@@ -4,12 +4,12 @@
         <h2>Study Bank</h2>
         <div class="question" v-for="(question, index) in studyBank" :key="question.id">
             <p> {{question.question}} </p>
-            <hr>
-            <button class="auto" v-on:click="show == !show">Show Answer</button>
-            <div class="answer" v-if="show === true">
+            <button class="auto" v-on:click="toggleShow(question)">Show Answer</button>
+            <div class="answer" v-if="question.show === true">
                 <p> {{question.answer}} </p>
             </div>
             <button class="auto" v-on:click="removeQuestion(index)">Remove Question</button>
+            <hr>
         </div>
     </div>
 
@@ -33,6 +33,14 @@ export default {
         removeQuestion(question) {
             this.$root.$data.studyBank.splice(question, 1);
         },
+        toggleShow(question) {
+            this.$root.$data.studyBank.push("x");
+            this.$root.$data.studyBank.pop();
+
+            console.log("In toggleShow()");
+            console.log("Question: " + question);
+            question.show = !question.show;
+        }
     }
 }
 </script>
