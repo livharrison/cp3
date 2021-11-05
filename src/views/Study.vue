@@ -38,8 +38,6 @@ export default {
             this.$root.$data.studyBank.push("x");
             this.$root.$data.studyBank.pop();
 
-            console.log("In toggleShow()");
-            console.log("Question: " + question);
             question.show = !question.show;
         }
     }

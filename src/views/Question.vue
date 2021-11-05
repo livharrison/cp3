@@ -57,17 +57,14 @@ export default {
   },
   methods: {
     setAnswer() {
-      console.log("In setAnswer()");
       this.answered = true;
     },
     addToStudyBank(question) {
       this.question.show = false;
       this.$root.$data.studyBank.push(this.question);
-      console.log(question);
     },
     updateMoney() {
       let thisMoney = parseInt(this.question.value.substring(1));
-      console.log("This money: " + thisMoney);
       if (this.userAnswer.toLowerCase() === this.question.answer.toLowerCase()) {
         this.$root.$data.money += thisMoney;
       } else {
