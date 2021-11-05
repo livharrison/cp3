@@ -51,7 +51,7 @@ h1 {
   margin: auto;
 }
 
-#header-items p {
+#header-items a {
   text-decoration: none;
   color: black;
 }
