@@ -5,9 +5,8 @@
         <div class="question" v-for="(question, index) in studyBank" :key="question.id">
             <p> {{question.question}} </p>
             <hr>
-            <button class="auto" v-on:click="show == true">Show Answer</button>
+            <button class="auto" v-on:click="show == !show">Show Answer</button>
             <div class="answer" v-if="show === true">
-                console.log(question.answer);
                 <p> {{question.answer}} </p>
             </div>
             <button class="auto" v-on:click="removeQuestion(index)">Remove Question</button>
@@ -61,6 +60,9 @@ p {
 
 .answer {
     background-color: rgb(5,5,149);
+    color: white;
+    padding: 10px;
+    margin: 10px 10px 10px 0px;
 }
 
 .auto {
