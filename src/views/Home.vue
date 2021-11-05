@@ -23,6 +23,8 @@ export default {
 <style scoped>
 .intro {
   font-style: italic;
+  text-align: center;
+  font-size: 18px;
 }
 
 .questions {
