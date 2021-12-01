@@ -6,6 +6,7 @@
       <router-link to="/"> <p>HOME</p> </router-link>
       <p><b>${{this.$root.$data.money}}</b></p>
       <router-link to="/study"> <p>STUDY BANK</p> </router-link>
+      <router-link to="/leaderboard"> <p>LEADERBOARD</p> </router-link>
     </div>
     <hr>
   </div>
@@ -47,7 +48,7 @@ h1 {
   font-family: 'Korinna';
   display: flex;
   justify-content: space-between;
-  width: 55%;
+  width: 65%;
   margin: auto;
 }
 
