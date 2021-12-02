@@ -5,7 +5,7 @@
     <div class="card">
       <p class="q-text">{{ question.question.toUpperCase() }} </p>
     </div>
- 
+
     <div class="guess" v-show="!answered">
       <form v-on:submit.prevent="setAnswer">
         <label for='answerBox'>
@@ -64,9 +64,13 @@ export default {
       this.$root.$data.studyBank.push(this.question);
     },
     updateMoney() {
+      this.$root.$data.questionsAnswered += 1;
+      console.log("Number of questions answered: ");
+      console.log(this.$root.$data.questionsAnswered);
       let thisMoney = parseInt(this.question.value.substring(1));
       if (this.userAnswer.toLowerCase() === this.question.answer.toLowerCase()) {
         this.$root.$data.money += thisMoney;
+        this.$root.$data.correct += 1;
       } else {
         this.$root.$data.money -= thisMoney;
       }
@@ -123,7 +127,7 @@ h4 {
   font-family: 'Korinna', serif;
   color: white;
   text-align: center;
-  font-size: 40px; 
+  font-size: 40px;
 }
 
 .products {

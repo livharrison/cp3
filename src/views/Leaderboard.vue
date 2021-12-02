@@ -3,7 +3,7 @@
   <div class="info">
 
     <div class="add">
-      <h2>Add yourself to the leaderboard:</h2>
+      <h2>When you're done playing, add yourself to the leaderboard!</h2>
       <input v-model="name" placeholder="Name">
       <p></p>
       <input v-model="age" type="number" placeholder="Age">
@@ -18,8 +18,8 @@
       <h2>{{person.name}}</h2>
       <div class="person-info">
         <p>${{person.money}}</p>
-        <p> # Questions answered</p>
-        <p>Accuracy</p>
+        <p>Answered {{person.questionsAnswered}} questions</p>
+        <p>{{person.accuracy}}% accuracy</p>
         <p>Age: {{person.age}}</p>
       </div>
     </div>
@@ -49,13 +49,19 @@ export default {
       this.leaderboard = this.$root.$data.leaderboard;
     },
     submit() {
+      var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
       var person = { name: this.name,
                      age: this.age,
-                     money: this.$root.$data.money };
+                     questionsAnswered: this.$root.$data.questionsAnswered,
+                     money: this.$root.$data.money,
+                     accuracy: acc
+                   };
       this.$root.$data.leaderboard.push(person);
       this.name = "";
       this.age = null;
       this.$root.$data.money = 0;
+      this.$root.$data.questionsAnswered = 0;
+      this.$root.$data.correct = 0;
     }
   }
 }

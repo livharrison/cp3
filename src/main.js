@@ -11,6 +11,8 @@ let data = {
   studyBank: [],
   money: 0,
   leaderboard: [],
+  questionsAnswered: 0,
+  correct: 0,
 }
 
 new Vue({
