@@ -17,7 +17,7 @@
     <div class="person" v-for="person in leaderboard" :key="person.name">
       <h2>{{person.name}}</h2>
       <div class="person-info">
-        <p>Score</p>
+        <p>${{person.money}}</p>
         <p> # Questions answered</p>
         <p>Accuracy</p>
         <p>Age: {{person.age}}</p>
@@ -49,11 +49,13 @@ export default {
       this.leaderboard = this.$root.$data.leaderboard;
     },
     submit() {
-      var person = { name: this.name, age: this.age };
+      var person = { name: this.name,
+                     age: this.age,
+                     money: this.$root.$data.money };
       this.$root.$data.leaderboard.push(person);
       this.name = "";
       this.age = null;
-      console.log(this.$root.$data.leaderboard);
+      this.$root.$data.money = 0;
     }
   }
 }
