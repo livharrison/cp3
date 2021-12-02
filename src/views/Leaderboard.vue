@@ -14,13 +14,14 @@
 
     <h1> leaderboard</h1>
 
-    <div class="person" v-for="person in leaderboard" :key="person.name">
+    <div class="person" v-for="(person,index) in leaderboard" :key="person.name">
       <h2>{{person.name}}</h2>
       <div class="person-info">
         <p>${{person.money}}</p>
         <p>Answered {{person.questionsAnswered}} questions</p>
         <p>{{person.accuracy}}% accuracy</p>
         <p>Age: {{person.age}}</p>
+        <button class="auto" v-on:click="remove(index)">Remove</button>
       </div>
     </div>
 
@@ -35,18 +36,16 @@ export default {
     return {
       name: "",
       age: null,
-      leaderboard: [],
     }
   },
-  created() {
-    this.getLeaderboard();
-  },
   computed: {
-
+    leaderboard() {
+      return this.$root.$data.leaderboard;
+    },
   },
   methods: {
-    getLeaderboard() {
-      this.leaderboard = this.$root.$data.leaderboard;
+    remove(index) {
+      this.$root.$data.leaderboard.splice(index, 1);
     },
     submit() {
       var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
@@ -57,6 +56,8 @@ export default {
                      accuracy: acc
                    };
       this.$root.$data.leaderboard.push(person);
+
+      // reset vars
       this.name = "";
       this.age = null;
       this.$root.$data.money = 0;

@@ -65,8 +65,6 @@ export default {
     },
     updateMoney() {
       this.$root.$data.questionsAnswered += 1;
-      console.log("Number of questions answered: ");
-      console.log(this.$root.$data.questionsAnswered);
       let thisMoney = parseInt(this.question.value.substring(1));
       if (this.userAnswer.toLowerCase() === this.question.answer.toLowerCase()) {
         this.$root.$data.money += thisMoney;
