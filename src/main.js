@@ -10,6 +10,7 @@ let data = {
   questions: mock,
   studyBank: [],
   money: 0,
+  leaderboard: [],
 }
 
 new Vue({
