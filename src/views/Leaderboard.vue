@@ -24,10 +24,9 @@
         <p>Age: {{person.age}}</p>
 
         <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
-        <button class="auto" v-on:click="editPerson()">Edit Information</button>
+        <button class="auto" v-on:click="editPerson(person)">Edit Information</button>
       </div>
     </div>
-
   </div>
 </div>
 </template>
