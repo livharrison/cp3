@@ -61,13 +61,28 @@ app.get('/api/leaderboard', async (req, res) => {
     res.sendStatus(500);
   }
 });
-
-
 app.delete('/api/leaderboard/:id', async (req, res) => {
   try {
     await Person.deleteOne({
       _id: req.params.id
     });
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+
+app.put('/api/leaderboard/:id', async (req, res) => {
+  try {
+    var person = await Person.findOne({
+      _id: req.params.id
+    });
+    person.name = req.body.name;
+    person.age = req.body.age;
+    person.save();
+
     res.sendStatus(200);
   } catch (error) {
     console.log(error);

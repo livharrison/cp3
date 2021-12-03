@@ -24,8 +24,17 @@
         <p>Age: {{person.age}}</p>
 
         <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
+      </div>
+
+      <div class="edit">
+        <p>Edit information</p>
+        <input v-model="editName" placeholder="Edit name">
+        <p></p>
+        <input v-model="editAge" type="number" placeholder="Edit age">
+        <p></p>
         <button class="auto" v-on:click="editPerson(person)">Edit Information</button>
       </div>
+
     </div>
   </div>
 </div>
@@ -42,10 +51,15 @@ export default {
       leaderboard: [],
       findName: "",
       findLeader: null,
+      editName: "",
+      editAge: null,
     }
   },
   created() {
     this.getLeaderboard();
+  },
+  computed() {
+    this.leaderboard = this.getLeaderboard();
   },
   methods: {
     selectLeader(leader) {
@@ -129,6 +143,11 @@ button {
 
 .person-info {
   text-align: left;
+}
+
+.edit {
+  display: block;
+  padding: 20px 0 0 0;
 }
 
 h2 {
