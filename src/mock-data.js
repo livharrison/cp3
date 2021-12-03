@@ -35,7 +35,7 @@ let mock = [
      "air_date":"2004-12-31",
      "question":"In 1963, live on \"The Art Linkletter Show\", this company served its billionth burger",
      "value":"$200",
-     "answer":"McDonald\\'s",
+     "answer":"McDonald's",
      "round":"Jeopardy!",
      "show_number":"4680"
   },

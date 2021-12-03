@@ -11,6 +11,7 @@
         <label for='answerBox'>
           <h3>Submit your answer:</h3>
         </label><br>
+        <p>What is </p>
         <textarea v-model="userAnswer" name='answerBox'>Show up</textarea>
         <br>
         <button type="submit" v-on:click="updateMoney">Submit</button>
@@ -18,8 +19,8 @@
     </div>
 
     <div class="results" v-show="answered">
-      <p>You answered: {{userAnswer}} </p>
-      <p id="actual">Correct answer: {{ question.answer }}</p>
+      <p>You answered: What is {{userAnswer}} </p>
+      <p id="actual">Correct answer: What is {{ question.answer }}</p>
 
       <div v-if="right === true">
         <h3>Way to go!</h3>
