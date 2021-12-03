@@ -21,7 +21,7 @@
       <p>You answered: {{userAnswer}} </p>
       <p id="actual">Correct answer: {{ question.answer }}</p>
 
-      <div v-if="userAnswer.toLowerCase() === question.answer.toLowerCase()">
+      <div v-if="right === true">
         <h3>Way to go!</h3>
       </div>
 
@@ -48,6 +48,7 @@ export default {
       userAnswer: '',
       answered: false,
       money: 0,
+      right: false,
     }
   },
   created() {
@@ -70,12 +71,15 @@ export default {
       if (this.userAnswer.toLowerCase() === this.question.answer.toLowerCase()) {
         this.$root.$data.money += thisMoney;
         this.$root.$data.correct += 1;
+        this.right = true;
       } else {
         this.$root.$data.money -= thisMoney;
+        this.right = false;
       }
     },
     gotItRight() {
       let thisMoney = parseInt(this.question.value.substring(1));
+      this.right = true;
       this.$root.$data.money += thisMoney; //removing the negative amount of money
       this.$root.$data.money += thisMoney; //adding the correct amount since they got it right
       this.$root.$data.correct += 1;
@@ -96,7 +100,7 @@ export default {
 button {
   font-family: 'Korinna', serif;
   font-size: 16px;
-  margin: 15px 0 0 0;
+  margin: 15px 0 0 15px;
 }
 
 .results {
