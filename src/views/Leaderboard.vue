@@ -102,6 +102,7 @@ export default {
         this.$root.$data.money = 0;
         this.$root.$data.questionsAnswered = 0;
         this.$root.$data.correct = 0;
+        this.getLeaderboard();
       } catch (error) {
         console.log(error);
       }
