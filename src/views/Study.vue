@@ -4,7 +4,8 @@
         <h2>Study Bank</h2>
         <div class="question" v-for="(question, index) in studyBank" :key="question.id">
             <p> {{question.question}} </p>
-            <button class="auto" v-on:click="toggleShow(question)">Show Answer</button>
+            <button class="auto" v-on:click="toggleShow(question)" v-if="question.show === false">Show Answer</button>
+            <button class="auto" v-on:click="toggleShow(question)" v-if="question.show ===true">Hide Answer</button>
             <div class="answer" v-if="question.show === true">
                 <p> {{question.answer}} </p>
             </div>
