@@ -8,20 +8,20 @@
       <p></p>
       <input v-model="age" type="number" placeholder="Age">
       <p></p>
-      <button @click="submit">Submit</button>
+      <button @click="addLeader">Submit</button>
       <hr>
     </div>
 
     <h1> leaderboard</h1>
 
-    <div class="person" v-for="(person,index) in leaderboard" :key="person.name">
+    <div class="person" v-for="person in leaderboard" v-bind:key="person.id">
       <h2>{{person.name}}</h2>
       <div class="person-info">
         <p>${{person.money}}</p>
         <p>Answered {{person.questionsAnswered}} questions</p>
         <p>{{person.accuracy}}% accuracy</p>
         <p>Age: {{person.age}}</p>
-        <button class="auto" v-on:click="remove(index)">Remove</button>
+        <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
       </div>
     </div>
 
@@ -30,23 +30,68 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Home',
   data() {
     return {
       name: "",
       age: null,
+      leaderboard: [],
     }
   },
-  computed: {
-    leaderboard() {
-      return this.$root.$data.leaderboard;
-    },
+  created() {
+    this.getLeaderboard();
   },
   methods: {
+    async getLeaderboard() {
+      try {
+        let response = await axios.get("/api/leaderboard");
+        this.leaderboard = response.data.leaderboard;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async deleteLeader(leader) {
+      try {
+        await axios.delete("api/leaderboard/" + leader.id);
+        this.getLeaderboard();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async addLeader() {
+      var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
+      try {
+        await axios.post("api/leaderboard", {
+          name: this.name,
+          age: this.age,
+          questionsAnswered: this.$root.$data.questionsAnswered,
+          money: this.$root.$data.money,
+          accuracy: acc
+        });
+        this.name = "";
+        this.age = null;
+        this.$root.$data.money = 0;
+        this.$root.$data.questionsAnswered = 0;
+        this.$root.$data.correct = 0;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+
+
+
+    // old fns
     remove(index) {
       this.$root.$data.leaderboard.splice(index, 1);
     },
+
     submit() {
       var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
       var person = { name: this.name,
