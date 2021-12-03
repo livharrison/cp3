@@ -21,7 +21,6 @@ const personSchema = new mongoose.Schema({
   questionsAnswered: Number,
   money: Number,
   accuracy: String,
-  edit: Boolean,
 });
 
 personSchema.virtual('id')
@@ -43,7 +42,6 @@ app.post('/api/leaderboard', async (req, res) => {
     questionsAnswered: req.body.questionsAnswered,
     money: req.body.money,
     accuracy: req.body.accuracy,
-    edit: req.body.edit,
   });
   try {
     await person.save();

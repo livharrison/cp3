@@ -17,15 +17,11 @@
     <div class="person" v-for="person in leaderboard" v-bind:key="person.id">
       <h2>{{person.name}}</h2>
 
-      <button class="auto" v-if="person.edit === true">Submit</button>
-
       <div class="person-info">
         <p>${{person.money}}</p>
         <p>Answered {{person.questionsAnswered}} questions</p>
         <p>{{person.accuracy}}% accuracy</p>
         <p>Age: {{person.age}}</p>
-
-        <button class="auto" v-if="person.edit === true">Submit</button>
 
         <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
         <button class="auto" v-on:click="editPerson()">Edit Information</button>
@@ -45,13 +41,18 @@ export default {
       name: "",
       age: null,
       leaderboard: [],
-      edit: false,
+      findName: "",
+      findLeader: null,
     }
   },
   created() {
     this.getLeaderboard();
   },
   methods: {
+    selectLeader(leader) {
+      this.findName = "";
+      this.findLeader = leader;
+    },
     async getLeaderboard() {
       try {
         let response = await axios.get("/api/leaderboard");
@@ -88,21 +89,23 @@ export default {
         this.$root.$data.money = 0;
         this.$root.$data.questionsAnswered = 0;
         this.$root.$data.correct = 0;
-        this.$root.$data.edit = false;
       } catch (error) {
         console.log(error);
       }
     },
-    editPerson() {
 
-      this.edit === !this.edit;
-      console.log(this.edit);
-    },
-    async editName() {
-
-    },
-    async editAge() {
-
+    async editPerson(leader) {
+      try {
+        await axios.put("/api/leaderboard/" + leader.id, {
+          name: this.findLeader.name,
+          age: this.findLeader.age,
+        });
+        this.findLeader = null;
+        this.getLeaderBoard();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
     },
 
 
