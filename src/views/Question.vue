@@ -28,6 +28,7 @@
       <div v-else>
         <h4>Better luck next time!</h4>
         <button type="submit" v-on:click="addToStudyBank()">Add to Study Bank</button>
+        <button type="submit" v-on:click="gotItRight()">I got it right</button>
       </div>
 
       <router-link to="/"><button type="submit">Back to Home</button></router-link>
@@ -72,6 +73,12 @@ export default {
       } else {
         this.$root.$data.money -= thisMoney;
       }
+    },
+    gotItRight() {
+      let thisMoney = parseInt(this.question.value.substring(1));
+      this.$root.$data.money += thisMoney; //removing the negative amount of money
+      this.$root.$data.money += thisMoney; //adding the correct amount since they got it right
+      this.$root.$data.correct += 1;
     }
   }
 }
