@@ -16,12 +16,19 @@
 
     <div class="person" v-for="person in leaderboard" v-bind:key="person.id">
       <h2>{{person.name}}</h2>
+
+      <button class="auto" v-if="person.edit === true">Submit</button>
+
       <div class="person-info">
         <p>${{person.money}}</p>
         <p>Answered {{person.questionsAnswered}} questions</p>
         <p>{{person.accuracy}}% accuracy</p>
         <p>Age: {{person.age}}</p>
+
+        <button class="auto" v-if="person.edit === true">Submit</button>
+
         <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
+        <button class="auto" v-on:click="editPerson()">Edit Information</button>
       </div>
     </div>
 
@@ -38,6 +45,7 @@ export default {
       name: "",
       age: null,
       leaderboard: [],
+      edit: false,
     }
   },
   created() {
@@ -66,6 +74,7 @@ export default {
 
     async addLeader() {
       var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
+      console.log(acc);
       try {
         await axios.post("api/leaderboard", {
           name: this.name,
@@ -79,12 +88,22 @@ export default {
         this.$root.$data.money = 0;
         this.$root.$data.questionsAnswered = 0;
         this.$root.$data.correct = 0;
+        this.$root.$data.edit = false;
       } catch (error) {
         console.log(error);
       }
     },
+    editPerson() {
 
+      this.edit === !this.edit;
+      console.log(this.edit);
+    },
+    async editName() {
 
+    },
+    async editAge() {
+
+    },
 
 
     // old fns

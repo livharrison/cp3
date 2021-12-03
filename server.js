@@ -20,7 +20,8 @@ const personSchema = new mongoose.Schema({
   age: Number,
   questionsAnswered: Number,
   money: Number,
-  accuracy: Number,
+  accuracy: String,
+  edit: Boolean,
 });
 
 personSchema.virtual('id')
@@ -35,28 +36,28 @@ personSchema.set('toJSON', {
 const Person = mongoose.model('Person', personSchema);
 
 
-app.get('/api/leaderboard', async (req, res) => {
+app.post('/api/leaderboard', async (req, res) => {
+  const person = new Person({
+    name: req.body.name,
+    age: req.body.age,
+    questionsAnswered: req.body.questionsAnswered,
+    money: req.body.money,
+    accuracy: req.body.accuracy,
+    edit: req.body.edit,
+  });
   try {
-    let leaderboard = await Person.find();
-    res.send({leaderboard: leaderboard});
+    await person.save();
+    res.send({person:person});
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-
-app.post('/api/leaderboard', async (req, res) => {
-    const person = new Person({
-    name: req.body.name,
-    age: req.body.age,
-    questionsAnswered: req.body.questionsAnswered,
-    money: req.body.money,
-    accuracy: req.body.accuracy,
-  });
+app.get('/api/leaderboard', async (req, res) => {
   try {
-    await person.save();
-    res.send({person:person});
+    let leaderboard = await Person.find();
+    res.send({leaderboard: leaderboard});
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
