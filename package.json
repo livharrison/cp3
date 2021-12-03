@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "mongoose": "^6.0.14",
     "underscore": "^1.12.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1"
