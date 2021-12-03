@@ -106,30 +106,6 @@ export default {
         console.log(error);
       }
     },
-
-
-    // old fns
-    remove(index) {
-      this.$root.$data.leaderboard.splice(index, 1);
-    },
-
-    submit() {
-      var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
-      var person = { name: this.name,
-                     age: this.age,
-                     questionsAnswered: this.$root.$data.questionsAnswered,
-                     money: this.$root.$data.money,
-                     accuracy: acc
-                   };
-      this.$root.$data.leaderboard.push(person);
-
-      // reset vars
-      this.name = "";
-      this.age = null;
-      this.$root.$data.money = 0;
-      this.$root.$data.questionsAnswered = 0;
-      this.$root.$data.correct = 0;
-    }
   }
 }
 </script>
