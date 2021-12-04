@@ -16,7 +16,6 @@
 
     <div class="person" v-for="person in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
       <h2>{{person.name}}</h2>
-
       <div class="person-info">
         <p>${{person.money}}</p>
         <p>Answered {{person.questionsAnswered}} questions</p>
