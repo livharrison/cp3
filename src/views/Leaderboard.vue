@@ -132,7 +132,9 @@ export default {
         newName = person.name;
       }
       let newAge = this.newAges[id];
-      if (this.newAges[id] === null) {
+      console.log("New age: " + newAge);
+      if (this.newAges[id] === null ||
+          this.newAges[id] === undefined) {
         newAge = person.age;
       }
 
