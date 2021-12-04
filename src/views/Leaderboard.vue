@@ -28,11 +28,11 @@
 
       <div class="edit">
         <p>Edit information</p>
-        <input v-model="editName" placeholder="Edit name">
+        <input v-model="newNames[person.id]" placeholder="Edit name">
         <p></p>
-        <input v-model="editAge" type="number" placeholder="Edit age">
+        <input v-model="newAges[person.id]" type="number" placeholder="Edit age">
         <p></p>
-        <button class="auto" v-on:click="editPerson(person)">Edit Information</button>
+        <button class="auto" v-on:click="editPerson(person)">Save</button>
       </div>
 
     </div>
@@ -53,6 +53,9 @@ export default {
       findLeader: null,
       editName: "",
       editAge: null,
+      currID: null,
+      newNames: {},
+      newAges: {},
     }
   },
   created() {
@@ -62,6 +65,13 @@ export default {
     this.leaderboard = this.getLeaderboard();
   },
   methods: {
+    setNewName(name) {
+      if (!(this.currID in this.newNames))
+        this.set(this.newNames, this.currID, {
+        name: "",
+      });
+      this.newNames[this.currID] = name;
+    },
     selectLeader(leader) {
       this.findName = "";
       this.findLeader = leader;
@@ -108,14 +118,32 @@ export default {
       }
     },
 
-    async editPerson(leader) {
+    async editPerson(person) {
+      let id = person.id;
+      let newName = this.newNames[id];
+      if (this.newNames[id] === "" ||
+          this.newNames[id] === undefined ||
+          this.newNames[id] === null) {
+        newName = person.name;
+      }
+      let newAge = this.newAges[id];
+      if (this.newAges[id] === null) {
+        newAge = person.age;
+      }
+
       try {
-        await axios.put("/api/leaderboard/" + leader.id, {
-          name: this.findLeader.name,
-          age: this.findLeader.age,
+        await axios.put("/api/leaderboard/" + id, {
+          name: newName,
+          age: newAge,
         });
+        console.log("new name: " + newName);
+        console.log("new age: " + newAge);
         this.findLeader = null;
-        this.getLeaderBoard();
+
+        this.newNames[id] = null;
+        this.newAges[id] = null;
+        this.getLeaderboard();
+
         return true;
       } catch (error) {
         console.log(error);
