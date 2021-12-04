@@ -13,8 +13,14 @@
     </div>
 
     <h1> leaderboard</h1>
+    <div class="highscore" v-for="(person, index) in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
+      <h2 v-if="index === 0"> High Score: {{ person.name }} - ${{ person.money }} </h2>
+    </div>
 
-    <div class="person" v-for="person in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
+    <div class="person" v-for="(person, index) in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
+      <div class="index">
+        <h3> # {{ index + 1}} </h3>
+      </div>
       <h2>{{person.name}}</h2>
       <div class="person-info">
         <p>${{person.money}}</p>
@@ -183,6 +189,18 @@ h2 {
   font-family: 'Bebas Neue';
   color: rgb(5,5,149);
   font-size: 40px;
+}
+
+h1 {
+  background-color: gold;
+  margin: 40px 0px 40px 0px;
+}
+
+h3 {
+  margin: 10px;
+  font-family: 'Bebas Neue';
+  color: rgb(0, 0, 0);
+  font-size: 50px;
 }
 
 
