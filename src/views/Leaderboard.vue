@@ -93,7 +93,6 @@ export default {
     },
     async addLeader() {
       var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
-      console.log(acc);
       try {
         await axios.post("api/leaderboard", {
           name: this.name,
