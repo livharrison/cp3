@@ -62,9 +62,6 @@ export default {
   created() {
     this.getLeaderboard();
   },
-  computed() {
-    this.leaderboard = this.getLeaderboard();
-  },
   methods: {
     setNewName(name) {
       if (!(this.currID in this.newNames))
