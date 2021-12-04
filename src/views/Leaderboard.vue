@@ -13,34 +13,34 @@
     </div>
 
     <h1> leaderboard</h1>
-    <div class="highscore" v-for="(person, index) in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
+
+    <div v-for="(person, index) in sortedLeaderboard" v-bind:key="person.id">
       <h2 v-if="index === 0"> High Score: {{ person.name }} - ${{ person.money }} </h2>
-    </div>
 
-    <div class="person" v-for="(person, index) in leaderboard.sort((a, b) => (a.money > b.money) ? -1 : 1)" v-bind:key="person.id">
-      <div class="index">
+      <div class="person">
         <h3> # {{ index + 1}} </h3>
-      </div>
-      <h2>{{person.name}}</h2>
-      <div class="person-info">
-        <p>${{person.money}}</p>
-        <p>Answered {{person.questionsAnswered}} questions</p>
-        <p>{{person.accuracy}}% accuracy</p>
-        <p>Age: {{person.age}}</p>
+        <h2>{{person.name}}</h2>
 
-        <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
-      </div>
+        <div class="person-info">
+          <p>${{person.money}}</p>
+          <p>Answered {{person.questionsAnswered}} questions</p>
+          <p>{{person.accuracy}}% accuracy</p>
+          <p>Age: {{person.age}}</p>
+          <button class="auto" v-on:click="deleteLeader(person)">Remove</button>
+        </div>
 
-      <div class="edit">
-        <p>Edit information</p>
-        <input v-model="newNames[person.id]" placeholder="Edit name">
-        <p></p>
-        <input v-model="newAges[person.id]" type="number" placeholder="Edit age">
-        <p></p>
-        <button class="auto" v-on:click="editPerson(person)">Save</button>
-      </div>
+        <div class="edit">
+          <p>Edit information</p>
+          <input v-model="newNames[person.id]" placeholder="Edit name">
+          <p></p>
+          <input v-model="newAges[person.id]" type="number" placeholder="Edit age">
+          <p></p>
+          <button class="auto" v-on:click="editPerson(person)">Save</button>
+        </div>
 
-    </div>
+      </div> <!-- closes person -->
+    </div> <!-- closes the one with the v-for -->
+
   </div>
 </div>
 </template>
@@ -61,6 +61,12 @@ export default {
   },
   created() {
     this.getLeaderboard();
+  },
+  computed: {
+    sortedLeaderboard() {
+      let sorted = this.leaderboard;
+      return sorted.sort((a, b) => (a.money > b.money) ? -1 : 1);
+    }
   },
   methods: {
     setNewName(name) {
