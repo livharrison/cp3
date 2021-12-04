@@ -54,10 +54,6 @@ export default {
       name: "",
       age: null,
       leaderboard: [],
-      findName: "",
-      findLeader: null,
-      editName: "",
-      editAge: null,
       currID: null,
       newNames: {},
       newAges: {},
@@ -77,10 +73,6 @@ export default {
       });
       this.newNames[this.currID] = name;
     },
-    selectLeader(leader) {
-      this.findName = "";
-      this.findLeader = leader;
-    },
     async getLeaderboard() {
       try {
         let response = await axios.get("/api/leaderboard");
@@ -90,7 +82,6 @@ export default {
         console.log(error);
       }
     },
-
     async deleteLeader(leader) {
       try {
         await axios.delete("api/leaderboard/" + leader.id);
@@ -100,7 +91,6 @@ export default {
         console.log(error);
       }
     },
-
     async addLeader() {
       var acc = ((this.$root.$data.correct / this.$root.$data.questionsAnswered) * 100).toFixed(2);
       console.log(acc);
@@ -122,7 +112,6 @@ export default {
         console.log(error);
       }
     },
-
     async editPerson(person) {
       let id = person.id;
       let newName = this.newNames[id];
@@ -132,7 +121,6 @@ export default {
         newName = person.name;
       }
       let newAge = this.newAges[id];
-      console.log("New age: " + newAge);
       if (this.newAges[id] === null ||
           this.newAges[id] === undefined) {
         newAge = person.age;
@@ -143,9 +131,6 @@ export default {
           name: newName,
           age: newAge,
         });
-        console.log("new name: " + newName);
-        console.log("new age: " + newAge);
-        this.findLeader = null;
 
         this.newNames[id] = null;
         this.newAges[id] = null;
